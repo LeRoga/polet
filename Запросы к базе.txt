@@ -1,0 +1,47 @@
+Запросы:
+1. **Запрос 1**: Все клиенты, которые купили авиабилеты на самолет АН-24 до Симферополя в период с 1 июня.
+   
+   SELECT c.*
+   FROM clients AS c
+   JOIN tickets AS t ON c.id_a = t.id_a
+   JOIN planes AS p ON t.id_p = p.id_p
+   WHERE p.model = 'АН-24' AND t.point = 'Симферополь' AND t.flight_date >= '2023-06-01';
+  
+
+2. **Запрос 2**: Заказы, полученные от клиентов, фамилии которых начинаются на буквы «П» или «К».
+  
+   SELECT *
+   FROM clients
+   WHERE Lname LIKE 'П%' OR Lname LIKE 'К%';
+   
+
+### Дополнительные запросы:
+3. **Запрос 3**: Все авиабилеты, купленные в течение определенного периода времени (например, с 1 июля по 31 июля).
+   ```sql
+   SELECT *
+   FROM tickets
+   WHERE flight_date BETWEEN '2023-07-01' AND '2023-07-31';
+   ```
+
+4. **Запрос 4**: Клиенты, которые имеют скидку более 10%.
+  
+   SELECT *
+   FROM clients
+   WHERE discount > 10;
+  
+
+5. **Запрос 5**: Все самолеты, которые могут перевезти более 2000 кг груза.
+   
+   SELECT *
+   FROM planes
+   WHERE max_cargo > 2000;
+  
+
+6. **Запрос 6**: Информация о заказах, сделанных в определенный день (например, 10 октября 2023).
+   
+   SELECT *
+   FROM clients AS c
+   JOIN tickets AS t ON c.id_a = t.id
+   WHERE c.order_date = '2023-10-10';
+   
+
